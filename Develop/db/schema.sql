@@ -27,7 +27,7 @@ CREATE TABLE tag (
 )
 
 --SYNTAX PRODUCT TAG
-CREATE TABLE Product_tag (
+CREATE TABLE product_tag (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
         FOREIGN KEY (product_id) references product(id)
