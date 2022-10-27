@@ -19,12 +19,13 @@ router.get('/', async (req, res) => {
 //GETTING CATEGORY USING PRIMARY KEY, INCLUDING PRODUCT.
 router.get('/:id', async (req, res) => {
   try{
-    const categoryByID = await Category.findByPk({
-      attributes: ['id', 'category_name'],
+    const categoryByID = await Category.findOne(
+      {
+        where: {id: req.params.id},
       include: {
         model: Product
       },
-    });
+  });
     res.status(200).json(categoryByID);
   } catch (err) {res.status(500).json(err)}
 });
@@ -55,9 +56,7 @@ router.put('/:id', async (req, res) => {
 //DELETE CATEGORY USING ID
 router.delete('/:id', async (req, res) => {
   try {
-    const deletedCategory = await Category.destroy({
-      category_name: req.body.category_name
-    }, 
+    const deletedCategory = await Category.destroy(
     {where: {id: req.params.id},
     });
     res.status(200).json(deletedCategory)
