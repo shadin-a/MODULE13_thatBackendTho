@@ -1,21 +1,48 @@
 const router = require('express').Router();
+const { json } = require('sequelize');
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
-router.get('/', (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
+//GET ALL PRODUCTS. INCLUDE THE MODEL TAG AND CATEGORY AND THEIR ATTRIBUTES
+router.get('/', async(req, res) => {
+  try {
+    const productList = await Product.findAll({
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+      include: [{
+        model: Category,
+        attributes: ['category_name']
+      },
+      {
+        model: Tag,
+        attributes:['tag_name'],
+      }],
+    })
+    res.status(200).json(productList);
+  } catch (err) {res.status(500).json(err)}
 });
 
-// get one product
-router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+//GET ONE PRODUCT USING THE PARAMETER OF PRODUCT ID
+router.get('/:id', async (req, res) => {
+  try{
+    const productbyID = await Product.findByPk({
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+      include: [{
+        model: Category,
+        attributes: ['category_name']
+      },
+      {
+        model: Tag,
+        attributes:['tag_name'],
+      }],
+    });
+    res.status(200).json(productbyID);
+  } catch (err) {res.status(500).json(err)}
 });
 
-// create new product
+
+
+//CREATE NEW PRODUCT
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
@@ -47,7 +74,9 @@ router.post('/', (req, res) => {
     });
 });
 
-// update product
+
+
+//UPDATING A PRODUCT
 router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
@@ -89,8 +118,16 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+
+
+//DELETING A PRODUCT
+router.delete('/:id', async (req, res) => {
+  try {
+    const deletedProduct = await Product.destroy(
+          { where: { id: req.params.id } },
+        );
+    res.status(200).json(deletedProduct)
+  } catch (err) {res.status(500).json(err)}
 });
 
 module.exports = router;
