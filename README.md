@@ -10,11 +10,11 @@
 
 
   ## DESCRIPTION
-  Use Inquirer to access a SQL database and view, add, and update everything from deptartments and roles to employees in your company!
+  Use Node and Express to serve routes for your E-commerce site!
   App Walkthrough: https://drive.google.com/file/d/1OXEwXNRrQzu8fOjJpujsNiXXOngOnyf-/view?usp=sharing
 
   ## INSTALLATION
- Before running this apllication, make sure to install Inquirer, and Node.
+ Before running this apllication, make sure to install Express and Node.
 
   ## TESTS
 No tests for this iteration of Team Datbase. Check again soon!
