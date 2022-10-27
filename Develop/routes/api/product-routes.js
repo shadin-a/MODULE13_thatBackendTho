@@ -25,8 +25,8 @@ router.get('/', async(req, res) => {
 //GET ONE PRODUCT USING THE PARAMETER OF PRODUCT ID
 router.get('/:id', async (req, res) => {
   try{
-    const productbyID = await Product.findByPk({
-      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+    const productbyID = await Product.findOne({
+      where: {id: req.params.id},
       include: [{
         model: Category,
         attributes: ['category_name']
