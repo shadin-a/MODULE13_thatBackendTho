@@ -11,7 +11,7 @@
 
   ## DESCRIPTION
   Use Node and Express to serve routes for your E-commerce site!
-  App Walkthrough: https://drive.google.com/file/d/1OXEwXNRrQzu8fOjJpujsNiXXOngOnyf-/view?usp=sharing
+  App Walkthrough: https://drive.google.com/file/d/1s4g2gKomT4cji_ek-aHCSUPphXKNHNhQ/view?usp=sharing
 
   ## INSTALLATION
  Before running this apllication, make sure to install Express and Node.
@@ -20,7 +20,7 @@
 No tests for this iteration of Team Datbase. Check again soon!
 
   ## USAGE
-  ![App in Use](module12_screenshot.png)
+  ![App in Use](MODULE13_SCREENSHOT.png)
 
   ## FAQ
   * shadin.alarab@gmail.com
